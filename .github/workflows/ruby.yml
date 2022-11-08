@@ -30,8 +30,10 @@ jobs:
       env:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       run: |
+        mkdir ~/.ssh
+        chmod 700 ~/.ssh
         echo "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-        chmod 700 ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H atdot.net >> ~/.ssh/known_hosts
         ssh -i ~/.ssh/id_rsa -R 12345:localhost:12345 ko1@atdot.net -T &
     - name: Set up Ruby
