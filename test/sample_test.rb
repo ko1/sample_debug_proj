@@ -1,5 +1,6 @@
 require "minitest/autorun"
 debugger do: 'catch Minitest::Assertion'
+debugger do: 'break 7'
 
 class TestFoo < Minitest::Test
   def test_foo
